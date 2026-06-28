@@ -18,6 +18,9 @@ import requests
 import streamlit as st
 from datetime import datetime
 
+# ── 地図ページ ──────────────────────────────────────────────
+from map_page import render_map_page
+
 # ── 多言語対応モジュール ──────────────────────────────────
 from i18n import LANGUAGES, UI, PHASES, TASKS as I18N_TASKS
 from i18n import t as tr
@@ -237,7 +240,7 @@ has_car     = st.sidebar.checkbox(tr(lang, "has_car"))
 st.sidebar.markdown("---")
 st.sidebar.markdown(f"**{tr(lang, 'mode_label')}**")
 
-MODE_KEYS = ["mode_normal", "mode_realtime", "mode_weather", "mode_task_manage"]
+MODE_KEYS = ["mode_normal", "mode_realtime", "mode_weather", "mode_map", "mode_task_manage"]
 mode_labels = [tr(lang, k) for k in MODE_KEYS]
 selected_mode_label = st.sidebar.radio(
     "Mode",
@@ -249,6 +252,7 @@ MODE_JA = {
     "mode_normal":      "通常（手動選択）",
     "mode_realtime":    "📡 リアルタイム水位連携",
     "mode_weather":     "🌤️ 郡山市天気",
+    "mode_map":         "🗺️ 避難場所マップ",
     "mode_task_manage": "✏️ タスク管理",
 }
 mode = MODE_JA[MODE_KEYS[mode_labels.index(selected_mode_label)]]
@@ -1670,6 +1674,12 @@ if mode == "🌤️ 郡山市天気":
             st.rerun()
 
 # ══════════════════════════════════════════
+# 🗺️ 避難場所マップモード
+# ══════════════════════════════════════════
+if mode == "🗺️ 避難場所マップ":
+    render_map_page(lang)
+
+# ══════════════════════════════════════════
 # タスク管理モード
 # ══════════════════════════════════════════
 CONDITION_LABELS = {
@@ -1941,7 +1951,7 @@ if mode == "✏️ タスク管理":
 # ─────────────────────────────────────────
 # マイ・タイムライン（タスク管理以外のモード共通）
 # ─────────────────────────────────────────
-if mode not in ("✏️ タスク管理", "🌤️ 郡山市天気"):
+if mode not in ("✏️ タスク管理", "🌤️ 郡山市天気", "🗺️ 避難場所マップ"):
     st.markdown("---")
     st.header(tr(lang, "timeline_header"))
 

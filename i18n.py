@@ -153,6 +153,15 @@ UI = {
         "tl": "🌤️ Panahon sa Koriyama",
         "id": "🌤️ Cuaca Koriyama",
     },
+    "mode_map": {
+        "ja": "🗺️ 避難場所マップ",
+        "en": "🗺️ Evacuation Map",
+        "zh": "🗺️ 避难场所地图",
+        "ko": "🗺️ 대피소 지도",
+        "vi": "🗺️ Bản đồ nơi sơ tán",
+        "tl": "🗺️ Mapa ng Evacuation",
+        "id": "🗺️ Peta Tempat Evakuasi",
+    },
     "mode_task_manage": {
         "ja": "✏️ タスク管理",
         "en": "✏️ Task Management",
